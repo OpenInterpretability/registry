@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "last_updated": "2026-05-10T17:05:00Z",
+  "count": 1,
+  "entries": [
+    {
+      "slug": "9f2e9c5b8e",
+      "title": "agent-probe-guard v0.1 — L43 pre_tool detection probe (epiphenomenal-softmax under steering)",
+      "author": "caiovicentino",
+      "type": "probe-result",
+      "model_id": "Qwen/Qwen3.6-27B-Instruct",
+      "claim": "Detection-tier probe for tool-call success in SWE-bench traces. AUROC 0.83 at N=42 with random-feature baseline gap +0.27. Causality protocol verdict is epiphenomenal-softmax: probe DETECTS but cannot LEVER (paper-6 Phase 7 finding).",
+      "path": "atlas/2026/9f2e9c5b8e.json",
+      "hf_repo_id": "caiovicentino1/agent-probe-guard-qwen36-27b",
+      "hf_url": "https://huggingface.co/datasets/caiovicentino1/agent-probe-guard-qwen36-27b",
+      "doi": null,
+      "paper_url": "https://openinterp.org/research/papers/two-forms-epiphenomenal-probes",
+      "manifest_sha256": "9f2e9c5b8e4fbb7c7eb4c9290d927e76341006c9d63277da05f4d21a0ab26c9b",
+      "created_at": "2026-05-10T17:00:00Z"
+    }
+  ]
+}

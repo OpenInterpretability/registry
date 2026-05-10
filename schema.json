@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenInterpretability/registry/blob/main/schema.json",
+  "title": "OpenInterp Registry Entry",
+  "description": "Schema for a single publication entry. Mirrors openinterp_mcp.publish.manifest.PublicationManifest.",
+  "type": "object",
+  "required": ["title", "author", "type", "license", "schema_version", "created_at", "manifest_sha256"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "author": {
+      "type": "string",
+      "description": "GitHub handle (preferred) or X handle"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["probe-result", "atlas-entry", "replication", "adversarial-finding", "sae-feature"]
+    },
+    "license": {
+      "type": "string",
+      "enum": ["apache-2.0", "mit", "cc-by-4.0", "cc0"]
+    },
+    "model_id": {
+      "type": ["string", "null"],
+      "description": "Required when type=probe-result"
+    },
+    "claim": {
+      "type": ["string", "null"],
+      "description": "One-line plain-language summary"
+    },
+    "numbers": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Free-form dict of key metrics (auroc, n, gap, etc)"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Filenames present in the HF dataset"
+    },
+    "methodology_check": {
+      "type": ["object", "null"],
+      "description": "Output of causality_protocol — verdict + numbers"
+    },
+    "reproduces": {
+      "type": ["string", "null"],
+      "description": "Paper id this replicates (required when type=replication)"
+    },
+    "hf_repo_id": {
+      "type": ["string", "null"],
+      "pattern": "^[a-zA-Z0-9_-]+/[a-zA-Z0-9_.-]+$"
+    },
+    "hf_url": {
+      "type": ["string", "null"],
+      "format": "uri"
+    },
+    "doi": {
+      "type": ["string", "null"]
+    },
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
