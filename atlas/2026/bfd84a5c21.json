@@ -1,0 +1,27 @@
+{
+  "title": "Multi-probe ensemble OOD walk-back — 0/3 cross-distribution generalization (Qwen3.6-27B)",
+  "author": "caiovicentino",
+  "type": "adversarial-finding",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen3.6-27B-Instruct",
+  "claim": "Cross-distribution test on TruthfulQA + StrategyQA + TriviaQA. 0/3 survives, mean lift −0.002. nb45 +6.7pp was within-distribution effect. ProbePack universal-middleware framing publicly walked back. FG single probe still valid OOD on factual (TriviaQA 0.710).",
+  "numbers": {
+    "datasets_tested": 3,
+    "datasets_generalized": 0,
+    "mean_lift": -0.002,
+    "fg_single_probe_triviaqa": 0.71,
+    "walked_back_claim": "ProbePack universal-middleware"
+  },
+  "artifacts": [
+    "nb46_cross_distribution_ensemble"
+  ],
+  "methodology_check": null,
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "bfd84a5c21c8a80b7078ba6a7c7cc437fb0cf9c123a7fea269439be22369094e",
+  "hf_repo_id": "caiovicentino1/openinterp-46-cross-distribution-ensemble",
+  "hf_url": "https://huggingface.co/datasets/caiovicentino1/openinterp-46-cross-distribution-ensemble",
+  "doi": null,
+  "paper_url": null
+}

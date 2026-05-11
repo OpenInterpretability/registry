@@ -1,0 +1,37 @@
+{
+  "title": "L43 pre_tool probe is softmax-temp epiphenomenal (Qwen3.6-27B SWE-bench)",
+  "author": "caiovicentino",
+  "type": "adversarial-finding",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen3.6-27B-Instruct",
+  "claim": "Triple-source convergent verdict on L43 pre_tool probe direction. (1) log-prob proxy with control-token norm: Δrel ≈ 0; (2) single-shot α=+5: 4/4 fails select same tool; (3) continuous α=+5: 3/4 keep same tool. Probe DETECTS but does not LEVER.",
+  "numbers": {
+    "auroc": 0.83,
+    "n_samples": 42,
+    "layer": 43,
+    "position": "pre_tool",
+    "delta_rel_max": -0.046,
+    "flip_rate_at_alpha_5": 0.0,
+    "verdict_class": "epiphenomenal-softmax"
+  },
+  "artifacts": [
+    "phase7_micro_pilot.json",
+    "phase7_continuous.json"
+  ],
+  "methodology_check": {
+    "verdict": "epiphenomenal-softmax",
+    "baselines_run": [
+      "random_direction_random_acts"
+    ],
+    "control_token_normalization": true,
+    "structural_rigidity_sweep": false
+  },
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "23bb3f2c303b120e2689f5dbe1c5d55ea40f25e36754f546b493fe52fb30e1d3",
+  "hf_repo_id": "caiovicentino1/agent-probe-guard-qwen36-27b",
+  "hf_url": "https://huggingface.co/datasets/caiovicentino1/agent-probe-guard-qwen36-27b",
+  "doi": null,
+  "paper_url": "https://openinterp.org/research/papers/two-forms-epiphenomenal-probes"
+}

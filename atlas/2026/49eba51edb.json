@@ -1,0 +1,29 @@
+{
+  "title": "ReasonGuard v0.2 — L55 mid_think CoT faithfulness probe (Qwen3.6-27B)",
+  "author": "caiovicentino",
+  "type": "probe-result",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen3.6-27B-Instruct",
+  "claim": "Position-of-faithfulness probe at L55 mid_think token. AUROC 0.888 within GSM8K, 0.605 cross StrategyQA. Honest narrow-scope finding — domain-bound, not universal.",
+  "numbers": {
+    "auroc_within_gsm8k": 0.888,
+    "auroc_cross_strategyqa": 0.605,
+    "layer": 55,
+    "position": "mid_think",
+    "scope": "domain-bound"
+  },
+  "artifacts": [
+    "probe.joblib",
+    "scaler.joblib",
+    "metadata.json"
+  ],
+  "methodology_check": null,
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "49eba51edb65b6ee13cfa4363cc4a0939ca704df5f25111b9e066836c9b2b890",
+  "hf_repo_id": "openinterp/reasonguard-qwen36-27b-l55-mid_think",
+  "hf_url": "https://huggingface.co/openinterp/reasonguard-qwen36-27b-l55-mid_think",
+  "doi": null,
+  "paper_url": null
+}

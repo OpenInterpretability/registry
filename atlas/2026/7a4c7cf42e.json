@@ -1,0 +1,28 @@
+{
+  "title": "CoTGuard v1 — CoT faithfulness probe via Lanham-2023 truncation (Qwen3.6-27B)",
+  "author": "caiovicentino",
+  "type": "probe-result",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen3.6-27B-Instruct",
+  "claim": "Linear probe trained on Lanham-2023 truncation-induced unfaithful CoT signal. Detection-tier probe — pending Phase 8 causality verdict (template-locked under steering).",
+  "numbers": {
+    "auroc": 0.91,
+    "n_samples": 240,
+    "layer": 55,
+    "position": "mid_think",
+    "methodology": "lanham_2023_truncation"
+  },
+  "artifacts": [
+    "probe.joblib",
+    "metadata.json"
+  ],
+  "methodology_check": null,
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "7a4c7cf42ed9528432f3890e675ee0c4103db9234e7c1c219d212840b0144480",
+  "hf_repo_id": null,
+  "hf_url": null,
+  "doi": null,
+  "paper_url": "https://openinterp.org/research/papers/two-forms-epiphenomenal-probes"
+}

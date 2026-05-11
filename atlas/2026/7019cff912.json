@@ -1,0 +1,28 @@
+{
+  "title": "Probe-detected grokking in multi-probe DPO (Qwen3.6-27B nb37 v2)",
+  "author": "caiovicentino",
+  "type": "atlas-entry",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen3.6-27B-Instruct",
+  "claim": "Phase transition (ratio 2.596) in fresh-probe AUROC across 11 nb37 v2 checkpoints. Original FG/RG probes show ZERO effect — DPO learning orthogonal to task-probe axes. Construct-then-compress pattern.",
+  "numbers": {
+    "phase_transition_ratio": 2.596,
+    "fresh_probe_auroc_pre": 0.472,
+    "fresh_probe_auroc_post": 0.528,
+    "original_probe_effect": 0.0,
+    "checkpoints": 11
+  },
+  "artifacts": [
+    "nb37_v2_checkpoints",
+    "nb41_v2_grokking_extended"
+  ],
+  "methodology_check": null,
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "7019cff91255b679077964591a24794705ec2b20bb58374d2f265af010ca886c",
+  "hf_repo_id": "caiovicentino1/openinterp-37v2-multiprobe-dpo-extended",
+  "hf_url": "https://huggingface.co/datasets/caiovicentino1/openinterp-37v2-multiprobe-dpo-extended",
+  "doi": null,
+  "paper_url": null
+}

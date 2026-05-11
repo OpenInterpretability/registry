@@ -1,0 +1,30 @@
+{
+  "title": "NLA two-tier verbalization — uniform fve_nrm decoupled from category-spread recall (Qwen2.5-7B + Gemma-3-12B)",
+  "author": "caiovicentino",
+  "type": "atlas-entry",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct + google/gemma-3-12b",
+  "claim": "N=150. Reconstruction fve_nrm UNIFORM 0.880 across chat/code/reasoning/agent. Keyword recall MASSIVELY category-dependent (chat 0.578 / agent 0.088 = 6.5×). Better-trained NLA → smaller fve_nrm spread but LARGER recall spread (decoupling magnification).",
+  "numbers": {
+    "n_samples": 150,
+    "fve_nrm_uniform": 0.88,
+    "fve_nrm_spread": 0.017,
+    "recall_spread": 0.49,
+    "permutation_gap": 0.27,
+    "direction_injection_alignment_qwen": 1.0,
+    "direction_injection_alignment_gemma": 0.75
+  },
+  "artifacts": [
+    "phase16_data.json",
+    "phase17_pilot.ipynb"
+  ],
+  "methodology_check": null,
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "e328cd066f6ffe53ebb5c139da9a1be16c8a5acd02473806328e6cd0ce1e421c",
+  "hf_repo_id": null,
+  "hf_url": null,
+  "doi": null,
+  "paper_url": "https://openinterp.org/research/papers/nla-two-tier-verbalization"
+}

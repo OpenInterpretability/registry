@@ -1,0 +1,36 @@
+{
+  "title": "Saturation-direction principle — 5 empirical classes of probe causality (Qwen3.6-27B)",
+  "author": "caiovicentino",
+  "type": "atlas-entry",
+  "license": "apache-2.0",
+  "model_id": "Qwen/Qwen3.6-27B-Instruct",
+  "claim": "Unifies 8 probes into 5 causality classes. Saturation-direction principle: probes lever in the direction of baseline residual saturation. L55 reversal in Phase 11e (pushdown→pushup when saturation flips) strongly confirms principle.",
+  "numbers": {
+    "probes_mapped": 8,
+    "classes_identified": 5,
+    "cross_distribution_sites_validated": 4,
+    "phase_11e_l55_reversal_confirmed": true
+  },
+  "artifacts": [
+    "phase11d_codeforces.json",
+    "phase11e_multisite.json",
+    "phase12_persona_falsifier.json"
+  ],
+  "methodology_check": {
+    "baselines_run": [
+      "random_direction_random_acts",
+      "random_direction_real_acts",
+      "shuffled_labels"
+    ],
+    "control_token_normalization": true,
+    "structural_rigidity_sweep": true
+  },
+  "reproduces": null,
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:02:45Z",
+  "manifest_sha256": "03a6e70bfd06a5336ef881c9942a1e19fe000acb9cb6c44c57c5cc07671797d0",
+  "hf_repo_id": null,
+  "hf_url": null,
+  "doi": null,
+  "paper_url": "https://openinterp.org/research/papers/saturation-direction-probe-levers"
+}
