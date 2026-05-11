@@ -1,0 +1,108 @@
+name: Atlas entry proposal
+description: Propose a new entry for the Atlas before opening a PR
+title: "[atlas] "
+labels: ["atlas"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template if you plan to submit an Atlas entry via the **manual PR** path.
+        If you already published via `openinterp_mcp.publish.publish()`, the PR was auto-opened — no issue needed.
+
+        See [CONTRIBUTING_TO_ATLAS.md](../blob/main/CONTRIBUTING_TO_ATLAS.md) for the full process.
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: One-line plain-language summary (≤ 200 chars)
+      placeholder: "FabricationGuard v2 — L31 cross-task hallucination probe (Qwen3.6-27B)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - probe-result
+        - atlas-entry
+        - adversarial-finding
+        - replication
+        - sae-feature
+    validations:
+      required: true
+
+  - type: input
+    id: model
+    attributes:
+      label: Model ID
+      description: Required when type is `probe-result`. Use the HF model_id.
+      placeholder: "Qwen/Qwen3.6-27B-Instruct"
+    validations:
+      required: false
+
+  - type: textarea
+    id: claim
+    attributes:
+      label: One-line claim
+      description: What does this entry establish, in plain language?
+      placeholder: "Linear probe on layer 31 detects confident hallucinations across tasks. HaluEval within 0.90, SimpleQA cross 0.88."
+    validations:
+      required: true
+
+  - type: textarea
+    id: numbers
+    attributes:
+      label: Headline numbers
+      description: Key metrics with N. The leaderboard requires AUROC + N at minimum for probe-results.
+      placeholder: "AUROC 0.88, N=200, layer=31, position=end_question"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: methodology
+    attributes:
+      label: Methodology check status
+      description: Did you run the causality protocol (3 baselines + structural rigidity)?
+      options:
+        - Yes — `causality_protocol` run with output ready to attach
+        - Partial — random baseline only, no structural sweep
+        - No — detection-tier evidence only
+        - N/A — entry type doesn't require it (e.g. sae-feature)
+    validations:
+      required: true
+
+  - type: input
+    id: hf_repo
+    attributes:
+      label: HF dataset / model repo
+      description: Where the reproducer artifacts live (joblib, scaler, metadata)
+      placeholder: "myhandle/my-probe-artifact"
+    validations:
+      required: false
+
+  - type: input
+    id: paper_url
+    attributes:
+      label: Paper URL (if any)
+      description: Link to associated write-up, blog, or arXiv preprint
+      placeholder: "https://openinterp.org/research/papers/..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I've read [CONTRIBUTING_TO_ATLAS.md](../blob/main/CONTRIBUTING_TO_ATLAS.md)
+          required: true
+        - label: Artifacts are reproducible from open weights (no closed-weight dependencies)
+          required: true
+        - label: I'm comfortable with the entry being Apache-2.0 / MIT / CC-BY-4.0 / CC0 licensed
+          required: true
+        - label: If N < 50, I've included a random-feature baseline
+          required: false
+        - label: For steering claims, I've applied control-token normalization
+          required: false
