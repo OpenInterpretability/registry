@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenInterpretability/registry/blob/main/schemas/causal_report.json",
+  "title": "OpenInterp Causal Report v0.1",
+  "description": "Output of running the Six Diagnostics protocol on a probe, SAE feature, or steering result. Establishes whether a method is causal, correlative-only, or epiphenomenal.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "report_id",
+    "subject",
+    "date",
+    "diagnostics",
+    "verdict"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "report_id": {
+      "type": "string",
+      "description": "Unique slug for this report"
+    },
+    "subject": {
+      "type": "object",
+      "required": ["type", "identifier"],
+      "properties": {
+        "type": { "type": "string", "enum": ["probe", "sae_feature", "steering_vector", "circuit", "intervention"] },
+        "identifier": { "type": "string", "description": "probe_id / feature_id / direction_id / circuit_id" },
+        "model_id": { "type": "string" }
+      }
+    },
+    "date": { "type": "string", "format": "date-time" },
+    "pre_registration_link": { "type": "string", "format": "uri", "description": "Optional link to pre-registration record" },
+    "diagnostics": {
+      "type": "object",
+      "description": "The Six Diagnostics. Each: applied (was the diagnostic run?), result (pass / fail / na), evidence (numbers + links).",
+      "required": ["saturation_direction", "env_coupling", "template_lock", "marginal_fit", "capacity_sweep", "epiphenomenal_prior"],
+      "properties": {
+        "saturation_direction": { "$ref": "#/$defs/diagnostic" },
+        "env_coupling": { "$ref": "#/$defs/diagnostic" },
+        "template_lock": { "$ref": "#/$defs/diagnostic" },
+        "marginal_fit": { "$ref": "#/$defs/diagnostic" },
+        "capacity_sweep": { "$ref": "#/$defs/diagnostic" },
+        "epiphenomenal_prior": { "$ref": "#/$defs/diagnostic" }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["causal", "correlative_only", "epiphenomenal_confirmed", "inconclusive", "structurally_locked"],
+      "description": "causal = behavioral lever beats controls; correlative_only = detects but doesn't lever; epiphenomenal_confirmed = neither detects nor levers in causally meaningful way; inconclusive = baselines incomplete; structurally_locked = decision is in input tokens, not residual"
+    },
+    "headline": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "One-line summary of the report"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Earlier claims this report walks back"
+    },
+    "artifact_links": {
+      "type": "object",
+      "properties": {
+        "hf_dataset": { "type": "string", "format": "uri" },
+        "code_repo": { "type": "string", "format": "uri" },
+        "notebook": { "type": "string", "format": "uri" },
+        "paper_doi": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "required": ["applied", "result"],
+      "properties": {
+        "applied": { "type": "boolean" },
+        "result": { "type": "string", "enum": ["pass", "fail", "na"] },
+        "evidence": { "type": "object", "additionalProperties": true },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}
