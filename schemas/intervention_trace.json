@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenInterpretability/registry/blob/main/schemas/intervention_trace.json",
+  "title": "OpenInterp Intervention Trace v0.1",
+  "description": "Records a single steering / attribution-patching / cache-patch / prefill experiment. Required for any causal claim about a probe direction or feature.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "trace_id",
+    "model_target",
+    "intervention_type",
+    "direction_source",
+    "outcome",
+    "controls"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "trace_id": { "type": "string" },
+    "date": { "type": "string", "format": "date-time" },
+    "model_target": {
+      "type": "object",
+      "required": ["model_id", "layer", "position"],
+      "properties": {
+        "model_id": { "type": "string" },
+        "layer": { "type": "integer", "minimum": 0 },
+        "position": { "type": "string" },
+        "head": { "type": "integer", "description": "For per-head interventions (e.g. recurrent state in GDN)" }
+      }
+    },
+    "intervention_type": {
+      "type": "string",
+      "enum": ["residual_steering", "attribution_patching", "cache_patch", "prefill_redirect", "feature_ablation", "feature_amplification", "other"]
+    },
+    "direction_source": {
+      "type": "object",
+      "required": ["source_type"],
+      "properties": {
+        "source_type": { "type": "string", "enum": ["linear_probe", "sae_feature", "random_baseline", "diff_means", "persona_vector", "other"] },
+        "identifier": { "type": "string", "description": "probe_id, feature_id, etc." },
+        "norm": { "type": "number", "description": "L2 norm of the direction" }
+      }
+    },
+    "alpha_sweep": {
+      "type": "array",
+      "items": { "type": "number" },
+      "description": "List of alphas (multipliers) tested in the sweep"
+    },
+    "controls": {
+      "type": "object",
+      "description": "Mandatory controls per OpenInterp Six Diagnostics.",
+      "required": ["control_token_normalization", "whitespace_stripping", "random_direction_baseline"],
+      "properties": {
+        "control_token_normalization": {
+          "type": "object",
+          "required": ["applied"],
+          "properties": {
+            "applied": { "type": "boolean", "description": "Was Δrel = Δ(target) − mean(Δ(controls)) computed instead of raw Δ?" },
+            "control_tokens": { "type": "array", "items": { "type": "string" } },
+            "delta_rel": { "type": "number" },
+            "delta_raw": { "type": "number" }
+          }
+        },
+        "whitespace_stripping": {
+          "type": "object",
+          "required": ["applied"],
+          "properties": {
+            "applied": { "type": "boolean", "description": "Was flip metric computed on base.strip() != modified.strip()?" },
+            "raw_flip_rate": { "type": "number" },
+            "stripped_flip_rate": { "type": "number" }
+          }
+        },
+        "random_direction_baseline": {
+          "type": "object",
+          "required": ["applied"],
+          "properties": {
+            "applied": { "type": "boolean" },
+            "random_flip_rate_at_max_alpha": { "type": "number" },
+            "n_random_directions": { "type": "integer" }
+          }
+        },
+        "structural_rigidity_check": {
+          "type": "object",
+          "description": "Were alphas at multiples of residual norm tested to distinguish amplitude-null from structural-null?",
+          "properties": {
+            "applied": { "type": "boolean" },
+            "max_alpha_tested": { "type": "number" },
+            "residual_norm": { "type": "number" }
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "required": ["verdict"],
+      "properties": {
+        "verdict": { "type": "string", "enum": ["lever_confirmed", "lever_directional", "structural_null", "amplitude_null", "epiphenomenal_softmax", "template_locked", "other"] },
+        "max_observed_effect": { "type": "number" },
+        "max_observed_alpha": { "type": "number" },
+        "asymmetric": { "type": "boolean", "description": "Pushup vs pushdown asymmetry observed?" }
+      }
+    },
+    "artifact_links": {
+      "type": "object",
+      "properties": {
+        "hf_dataset": { "type": "string", "format": "uri" },
+        "notebook": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}
