@@ -13,15 +13,7 @@ registry/
 ├── atlas/<year>/<sha>.json       ← general atlas entries (probe results, observations)
 ├── replications/<paper>/<sha>.json ← replications of published papers
 ├── probebench/<sha>.json         ← submissions to ProbeBench leaderboard
-├── contributors/<handle>.json    ← auto-generated per-contributor index
-├── schemas/                      ← OpenInterp Eval Standard v0.1 (Six Diagnostics)
-│   ├── probe_card.json           ← documents a probe + mandatory baselines
-│   ├── causal_report.json        ← output of Six Diagnostics protocol
-│   ├── intervention_trace.json   ← record of a steering/patching experiment
-│   └── interp_card.json          ← per-feature interpretation + autointerp provenance
-└── failed-replications/          ← Failed-Replication Registry — claims walked back
-    ├── README.md                 ← entry template + failure-mode taxonomy
-    └── <slug>.md                 ← one entry per walked-back claim
+└── contributors/<handle>.json    ← auto-generated per-contributor index
 ```
 
 ## How entries land
